@@ -30,12 +30,12 @@ class SearchTest(unittest.TestCase):
     def test_2_sku_search_returned_expected_url(self):
         driver = self.driver
         test_sku_search_returned_expected_url = ProductPage(driver)
-        assert test_sku_search_returned_expected_url.page_url == 'https://www.westelm.com/products/build-your-own-andes-sectional-extra-deep-h2517/?words=2613243&pkey=k2613243&sku=2613243'
+        test_sku_search_returned_expected_url.get_page_url('https://www.westelm.com/products/build-your-own-andes-sectional-extra-deep-h2517/?words=2613243&pkey=k2613243&sku=2613243')
 
     def test_3_correct_image_url_returned(self):
         driver = self.driver
         test_correct_image_url_returned = ProductPage(driver)
-        assert test_correct_image_url_returned.image_url == 'https://www.westelm.com/weimgs/ab/images/wcm/products/201932/0002/img28c.jpg'
+        test_correct_image_url_returned.get_image_url('https://www.westelm.com/weimgs/ab/images/wcm/products/201932/0002/img28c.jpg')
 
     @classmethod
     def tearDownClass(cls):
