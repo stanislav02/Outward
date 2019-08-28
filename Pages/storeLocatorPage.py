@@ -3,6 +3,10 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import os
+import datetime
+
+now = f'{datetime.datetime.now():%Y-%m-%d}'
 
 class StoreLocatorPage():
 
@@ -27,4 +31,14 @@ class StoreLocatorPage():
         if expected_store_count == 1:
             store_noun = 'store'
         store_noun = 'stores'
-        assert self.driver.find_element_by_id(Locators.store_count).text == f'We have {expected_store_count} {store_noun} in {state} :'
+        try:
+            assert self.driver.find_element_by_id(Locators.store_count).text == f'We have {expected_store_count} {store_noun} in {state} :'
+
+        except AssertionError as Exception:
+            if not os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Reports', 'Screenshots')):
+                os.mkdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Reports', 'Screenshots'))
+            print(Exception)
+            print('Capturing screenshot')
+            self.driver.save_screenshot(
+                os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Reports', 'Screenshots',
+                             f'store_locator_test_failure_screenshot{now}.png'))

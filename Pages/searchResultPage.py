@@ -1,5 +1,9 @@
 from Outward.Locators.locators import Locators
 from selenium.common.exceptions import NoSuchElementException
+import datetime
+import os
+
+now = f'{datetime.datetime.now():%Y-%m-%d}'
 
 class SearchResultPage():
 
@@ -15,4 +19,8 @@ class SearchResultPage():
         try:
             self.driver.find_element_by_xpath(Locators.unrecognized_query_message)
         except NoSuchElementException as Exception:
+            if not os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)),'Reports', 'Screenshots')):
+                os.mkdir(os.path.join(os.path.dirname(os.path.abspath(__file__)),'Reports', 'Screenshots'))
             print(Exception)
+            print('Capturing screenshot')
+            self.driver.save_screenshot(os.path.join(os.path.dirname(os.path.abspath(__file__)),'Reports', 'Screenshots', f'product_search_test_failure_screenshot{now}.png'))
