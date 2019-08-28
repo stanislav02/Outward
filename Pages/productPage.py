@@ -1,4 +1,4 @@
-from Locators.locators import Locators
+from Outward.Locators.locators import Locators
 
 class ProductPage():
 

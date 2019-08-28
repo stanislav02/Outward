@@ -6,8 +6,8 @@ import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-from Pages.landingPage import LandingPage
-from Pages.storeLocatorPage import StoreLocatorPage
+from Outward.Pages.landingPage import LandingPage
+from Outward.Pages.storeLocatorPage import StoreLocatorPage
 import HtmlTestRunner
 
 class SearchTest(unittest.TestCase):
@@ -43,3 +43,7 @@ class SearchTest(unittest.TestCase):
         cls.driver.quit()
         print('Test Completed')
 
+if __name__ == '__main__':
+    if not os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)),'Reports')):
+        os.mkdir(os.path.join(os.path.dirname(os.path.abspath(__file__)),'Reports'))
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output=os.path.join(os.path.dirname(os.path.abspath(__file__)),'Reports')))

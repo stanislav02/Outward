@@ -1,4 +1,4 @@
-from Locators.locators import Locators
+from Outward.Locators.locators import Locators
 from selenium.webdriver.common.keys import Keys
 
 class LandingPage():

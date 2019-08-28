@@ -1,4 +1,4 @@
-from Locators.locators import Locators
+from Outward.Locators.locators import Locators
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
